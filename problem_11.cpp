@@ -55,11 +55,11 @@ std::string INPUT_STRING =
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48";
 
 int main() {
+
     // Read string into integer array
 
     int INPUT [20][20];
     std::string value = "";
-    std::cout << "Hello world" << std::endl;
     for (int i = 0; i < 20; i++) {
         for (int j = 0; j < 20; j++) {
             value = INPUT_STRING.substr(3 * j + 59 * i, 2);
@@ -67,12 +67,57 @@ int main() {
         }
     }
 
+    unsigned int result = 0;
+    unsigned int product;
+
     // Check horizontal products
+    for (int i = 0; i < 20; i++) {
+        for (int j = 0; j < 20 - 3; j++) {
+            product = INPUT[i][j] * INPUT[i][j + 1] 
+                    * INPUT[i][j + 2] * INPUT[i][j + 3];
+            if (product > result) {
+                result = product;
+            }
+        }
+    }
 
     // Check vertical products
 
-    // Check diagonal products
+    for (int i = 0; i < 20 - 3; i++) {
+        for (int j = 0; j < 20; j++) {
+            product = INPUT[i][j] * INPUT[i + 1][j] 
+                    * INPUT[i + 2][j] * INPUT[i + 3][j];
+            if (product > result) {
+                result = product;
+            }
+        }
+    }
+
+    // Check diagonal products (NW-SE)
     
+    for (int i = 0; i < 20 - 3; i++) {
+        for (int j = 0; j < 20 - 3; j++) {
+            product = INPUT[i][j] * INPUT[i + 1][j + 1] 
+                    * INPUT[i + 2][j + 3] * INPUT[i + 3][j + 3];
+            if (product > result) {
+                result = product;
+            }
+        }
+    }
+
+    // Check diagonal products (NE-SW)
+
+    for (int i = 0; i < 20 - 3; i++) {
+        for (int j = 3; j < 20; j++) {
+            product = INPUT[i][j] * INPUT[i + 1][j - 1] 
+                    * INPUT[i + 2][j - 3] * INPUT[i + 3][j - 3];
+            if (product > result) {
+                result = product;
+            }
+        }
+    }
+
+    std::cout << "Answer:" << result << std::endl;
     return 0;
 }
 
