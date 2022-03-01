@@ -107,7 +107,7 @@ int main() {
 
     // Check diagonal products (NE-SW)
 
-    for (int i = 0; i < 20 - 3; i++) {
+    for (int i = 0; i < 20 - 4; i++) {
         for (int j = 3; j < 20; j++) {
             product = INPUT[i][j] * INPUT[i + 1][j - 1] 
                     * INPUT[i + 2][j - 3] * INPUT[i + 3][j - 3];
