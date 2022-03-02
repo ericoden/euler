@@ -69,13 +69,20 @@ int main() {
 
     unsigned int result = 0;
     unsigned int product;
-
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    int d = 0;
     // Check horizontal products
     for (int i = 0; i < 20; i++) {
         for (int j = 0; j < 20 - 3; j++) {
             product = INPUT[i][j] * INPUT[i][j + 1] 
                     * INPUT[i][j + 2] * INPUT[i][j + 3];
             if (product > result) {
+                a = INPUT[i][j];
+                b = INPUT[i][j + 1];
+                c = INPUT[i][j + 2];
+                d = INPUT[i][j + 3];
                 result = product;
             }
         }
@@ -88,6 +95,10 @@ int main() {
             product = INPUT[i][j] * INPUT[i + 1][j] 
                     * INPUT[i + 2][j] * INPUT[i + 3][j];
             if (product > result) {
+                a = INPUT[i][j];
+                b = INPUT[i + 1][j];
+                c = INPUT[i + 2][j];
+                d = INPUT[i + 3][j];
                 result = product;
             }
         }
@@ -100,6 +111,10 @@ int main() {
             product = INPUT[i][j] * INPUT[i + 1][j + 1] 
                     * INPUT[i + 2][j + 3] * INPUT[i + 3][j + 3];
             if (product > result) {
+                a = INPUT[i][j];
+                b = INPUT[i + 1][j + 1];
+                c = INPUT[i + 2][j + 2];
+                d = INPUT[i + 3][j + 3];
                 result = product;
             }
         }
@@ -107,17 +122,22 @@ int main() {
 
     // Check diagonal products (NE-SW)
 
-    for (int i = 0; i < 20 - 4; i++) {
+    for (int i = 0; i < 20 - 3; i++) {
         for (int j = 3; j < 20; j++) {
             product = INPUT[i][j] * INPUT[i + 1][j - 1] 
-                    * INPUT[i + 2][j - 3] * INPUT[i + 3][j - 3];
+                    * INPUT[i + 2][j - 2] * INPUT[i + 3][j - 3];
             if (product > result) {
+                a = INPUT[i][j];
+                b = INPUT[i + 1][j - 1];
+                c = INPUT[i + 2][j - 2];
+                d = INPUT[i + 3][j - 3];
                 result = product;
             }
         }
     }
 
-    std::cout << "Answer:" << result << std::endl;
+    std::cout << "Answer: " << a << " * " << b << " * ";
+    std::cout << c << " * " << d << " = " << result << std::endl;
     return 0;
 }
 
